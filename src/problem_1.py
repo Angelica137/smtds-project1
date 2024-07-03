@@ -12,6 +12,7 @@ class LRU_Cache(object):
 
     def get(self, key):
         if key in self.cache:
+            self.cache.move_to_end(key)
             return self.cache[key]
         else:
             return -1
@@ -26,10 +27,10 @@ class LRU_Cache(object):
 
 our_cache = LRU_Cache(5)
 
-our_cache.set(1, 1);
-our_cache.set(2, 2);
-our_cache.set(3, 3);
-our_cache.set(4, 4);
+our_cache.set(1, 1)
+our_cache.set(2, 2)
+our_cache.set(3, 3)
+our_cache.set(4, 4)
 
 
 our_cache.get(1)       # returns 1
@@ -39,13 +40,14 @@ our_cache.get(9)      # returns -1 because 9 is not present in the cache
 our_cache.set(5, 5)
 our_cache.set(6, 6)
 
-our_cache.get(3)      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
+# returns -1 because the cache reached it's capacity and 3 was the least recently used entry
+our_cache.get(3)
 
-## Add your own test cases: include at least three test cases
-## and two of them must include edge cases, such as null, empty or very large values
+# Add your own test cases: include at least three test cases
+# and two of them must include edge cases, such as null, empty or very large values
 
-## Test Case 1
+# Test Case 1
 
-## Test Case 2
+# Test Case 2
 
-## Test Case 3
+# Test Case 3
