@@ -11,8 +11,10 @@ class LRU_Cache(object):
         return self.capacity
 
     def get(self, key):
-        # Retrieve item from provided key. Return -1 if nonexistent.
-        pass
+        if key in self.cache:
+            return self.cache[key]
+        else:
+            return -1
 
     def set(self, key, value):
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item. 
