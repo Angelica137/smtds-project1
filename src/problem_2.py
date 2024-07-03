@@ -1,3 +1,6 @@
+import os
+
+
 def find_files(suffix, path):
     """
     Find all files beneath path with file name suffix.
@@ -14,7 +17,18 @@ def find_files(suffix, path):
     Returns:
        a list of paths
     """
-    return None
+    result = []
+
+    try:
+        with os.scandir(path) as entries:
+            for entry in entries:
+                if entry.is_file() and entry.name.endswith(suffix):
+                    result.append(entry.path)
+                elif entry.is_dir():
+                    result.extend(find_files(suffix, entry.path))
+    except PermissionError:
+        print(f"Permission denied: {path}")
+    return result
 
 # Add your own test cases: include at least three test cases
 # and two of them must include edge cases, such as null, empty or very large values
