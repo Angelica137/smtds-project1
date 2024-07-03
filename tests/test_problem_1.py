@@ -1,25 +1,50 @@
 from src.problem_1 import LRU_Cache
 
-
-test_cache = LRU_Cache(5)
-
-
-def test_capcity():
-    assert test_cache.get_capacity() == 5
+import pytest
 
 
-def test_get_value_cache_empty():
-    assert test_cache.get(9) == -1
+@pytest.fixture
+def empty_cache():
+    return LRU_Cache(5)
 
 
-test_cache.set(1, 1)
-test_cache.set(2, 2)
-test_cache.set(3, 3)
-test_cache.set(4, 4)
+@pytest.fixture
+def filled_cache():
+    cache = LRU_Cache(5)
+    cache.set(1, 1)
+    cache.set(2, 2)
+    cache.set(3, 3)
+    cache.set(4, 4)
+    return cache
 
 
-def test_set_values():
-    assert test_cache.get(1) == 1
-    assert test_cache.get(2) == 2
-    assert test_cache.get(3) == 3
-    assert test_cache.get(4) == 4
+@pytest.fixture
+def overfilled_cache():
+    cache = LRU_Cache(5)
+    cache.set(1, 1)
+    cache.set(2, 2)
+    cache.set(3, 3)
+    cache.set(4, 4)
+    cache.set(5, 5)
+    cache.set(6, 6)
+    return cache
+
+
+def test_capacity(empty_cache):
+    assert empty_cache.get_capacity() == 5
+
+
+def test_get_value_cache_empty(empty_cache):
+    assert empty_cache.get(1) == -1
+
+
+def test_set_values(filled_cache):
+    assert filled_cache.get(1) == 1
+    assert filled_cache.get(2) == 2
+    assert filled_cache.get(3) == 3
+    assert filled_cache.get(4) == 4
+
+
+def test_lru_eviction(overfilled_cache):
+    assert overfilled_cache.get(1) == -1
+    assert overfilled_cache.get(2) == 2
