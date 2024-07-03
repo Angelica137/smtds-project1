@@ -1,6 +1,6 @@
 from src.problem_1 import LRU_Cache
 
-import pytest
+import pytest  # type: ignore
 
 
 @pytest.fixture

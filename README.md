@@ -13,3 +13,6 @@ While putting an element in the cache, your put() / set() operation must insert 
 All operations must take O(1) time.
 
 For the current problem, you can consider the size of cache = 5.
+
+## Problem 2: File Recursion
+Write code for finding all files under a directory (and all directories beneath it) that end with ".c"
