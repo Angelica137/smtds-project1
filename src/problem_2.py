@@ -38,3 +38,7 @@ def find_files(suffix, path):
 # Test Case 2
 
 # Test Case 3
+
+# I am not sure that these test cases need to be implemented for this
+# problem? We would not get null and I am not sure about setting up
+# The tests that create a large number of files.
