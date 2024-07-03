@@ -30,6 +30,22 @@ def overfilled_cache():
     return cache
 
 
+@pytest.fixture
+def overfilled_cache_with_eviction_3():
+    cache = LRU_Cache(5)
+    cache.set(1, 1)
+    cache.set(2, 2)
+    cache.set(3, 3)
+    cache.set(4, 4)
+
+    cache.get(1)
+    cache.get(2)
+
+    cache.set(5, 5)
+    cache.set(6, 6)
+    return cache
+
+
 def test_capacity(empty_cache):
     assert empty_cache.get_capacity() == 5
 
@@ -50,3 +66,7 @@ def test_set_values(filled_cache):
 def test_lru_eviction(overfilled_cache):
     assert overfilled_cache.get(1) == -1
     assert overfilled_cache.get(2) == 2
+
+
+def test_lru_eviction_3(overfilled_cache_with_eviction_3):
+    assert overfilled_cache_with_eviction_3.get(3) == -1
