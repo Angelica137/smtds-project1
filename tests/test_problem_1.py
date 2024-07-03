@@ -44,6 +44,8 @@ def test_set_values(filled_cache):
     assert filled_cache.get(3) == 3
     assert filled_cache.get(4) == 4
 
+    assert filled_cache.get(9) == -1
+
 
 def test_lru_eviction(overfilled_cache):
     assert overfilled_cache.get(1) == -1
