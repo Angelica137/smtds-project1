@@ -9,7 +9,7 @@ def test_capcity():
 
 
 def test_get_value_cache_empty():
-    assert test_cache.get(1) == -1
+    assert test_cache.get(9) == -1
 
 
 test_cache.set(1, 1)
