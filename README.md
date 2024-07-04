@@ -16,3 +16,6 @@ For the current problem, you can consider the size of cache = 5.
 
 ## Problem 2: File Recursion
 Write code for finding all files under a directory (and all directories beneath it) that end with ".c"
+
+## Problem 3: Huffman Coding
+Implement the Huffman coding algorithm.
