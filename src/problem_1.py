@@ -22,3 +22,8 @@ class LRU_Cache(object):
         elif len(self.cache) >= self.capacity:
             self.cache.popitem(last=False)
         self.cache[key] = value
+
+
+"""
+Test cases in test file
+"""
