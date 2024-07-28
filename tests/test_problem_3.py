@@ -26,3 +26,8 @@ def test_node_compares_itself():
 def test_huffman_encoding_no_data():
     data = ''
     assert huffman_encoding(data) == ''
+
+
+def test_frequency_chars():
+    data = 'aaabbbddd'
+    assert huffman_encoding(data) == {'a': 3, 'b': 3, 'c': 3}
