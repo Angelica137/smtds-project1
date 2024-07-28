@@ -41,7 +41,31 @@ def huffman_encoding(data):
         merged.right = right
         heapq.heappush(heap, merged)
 
-    return heap[0] if heap else None
+    root = heap[0]
+    codes = {}
+    return root
+
+
+# Helper function to generate codes
+def generate_codes(root):
+    codes = {}
+
+    def _generate_codes(node, current_code):
+
+        # if we have gone past a leaf node, we completed traversal, so return
+        if node is None:
+            return
+        # if we reached a leaf (coz it has a char) add the char and its code to the dict and return
+        if node.char is not None:
+            codes[node.char] = current_code
+            return
+        # else, traverse the tree building the code
+        _generate_codes(node.left, current_code + "0")
+        _generate_codes(node.right, current_code + "1")
+
+    # start recursion
+    _generate_codes(root, "")
+    return codes
 
 
 def huffman_decoding(data, tree):

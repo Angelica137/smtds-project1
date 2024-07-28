@@ -113,3 +113,31 @@ def test_huffman_tree_structure_complex():
     }
 
     verify_tree_structure(root, expected_tree)
+
+
+def test_generate_codes():
+    # Create a simple Huffman tree
+    leaf_a = Node(3, 'a')
+    leaf_b = Node(2, 'b')
+    leaf_c = Node(1, 'c')
+    internal_node = Node(3, None)
+    internal_node.left = leaf_b
+    internal_node.right = leaf_c
+    root = Node(6, None)
+    root.left = leaf_a
+    root.right = internal_node
+
+    # Generate codes
+    codes = generate_codes(root)
+
+    # Expected Huffman codes
+    expected_codes = {
+        'a': '0',
+        'b': '10',
+        'c': '11'
+    }
+
+    # Test if generated codes match expected codes
+    assert codes == expected_codes, f"Expected {expected_codes}, but got {codes}"
+
+    print("generate_codes test passed successfully!")
