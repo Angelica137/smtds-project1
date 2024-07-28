@@ -2,40 +2,114 @@ from src.problem_3 import *
 
 
 def test_new_node():
-    new_node = Node("a", 6)
+    new_node = Node(6, "a")
     assert new_node.char == "a"
     assert new_node.freq == 6
     assert new_node.left is None
     assert new_node.right is None
 
 
-def test_node_compares_itself():
-    """
-    GIVEN another node
-    WHEN there is another node
-    THEN check current node is less thatn other node
-    """
-    node_1 = Node("a", 5)
-    node_2 = Node("c", 3)
-    node_3 = Node("d", 5)
-    assert node_2 < node_1
-    assert not (node_1 < node_2)
-    assert not (node_1 < node_3)
+def test_node_comparison():
+    # Test case 1: Different frequencies
+    node1 = Node(5, 'a')
+    node2 = Node(10, 'b')
+    assert node1 < node2
+    assert not node2 < node1
+
+    # Test case 2: Same frequency, different characters
+    node3 = Node(5, 'b')
+    assert node1 < node3
+    assert not node3 < node1
+
+    # Test case 3: Same frequency, both internal nodes (no character)
+    node4 = Node(5, None)
+    node5 = Node(5, None)
+    node4.creation_order = 1
+    node5.creation_order = 2
+    assert node4 < node5
+    assert not (node5 < node4)
+
+    # Test case 4: Same frequency, one leaf node and one internal node
+    assert node1 < node4
+    assert not node4 < node1
+
+    # Test case 5: Equal nodes
+    node6 = Node(5, 'a')
+    assert not node1 < node6
+    assert not node6 < node1
 
 
 def test_huffman_encoding_no_data():
     data = ""
-    assert huffman_encoding(data) == ""
+    assert huffman_encoding(data) is None
 
 
-def test_huffman_encoding_returns_heap():
-    data = "aaabbbddd"
-    expected_nodes = [Node("a", 3), Node("b", 3), Node("d", 3)]
-    result = huffman_encoding(data)
+def verify_tree_structure(node, expected, path="root"):
+    if expected is None:
+        assert node is None, f"Expected None at {path}, but got a node"
+        return
+    if node is None:
+        assert False, f"Expected a node at {path}, but got None"
 
-    assert len(result) == len(expected_nodes)
-    for node in result:
-        assert any(
-            node.char == expected.char and node.freq == expected.freq
-            for expected in expected_nodes
+    print(
+        f"Checking node at {path}: Expected {expected['char']}:{expected['freq']}, Got {node.char}:{node.freq}"
+    )
+
+    assert (
+        node.char == expected["char"]
+    ), f"At {path}: Expected char {expected['char']}, got {node.char}"
+    assert (
+        node.freq == expected["freq"]
+    ), f"At {path}: Expected freq {expected['freq']}, got {node.freq}"
+
+    verify_tree_structure(node.left, expected.get("left"), f"{path}.left")
+    verify_tree_structure(node.right, expected.get("right"), f"{path}.right")
+
+
+def print_tree_structure(node, prefix="", is_left=True):
+    if node is not None:
+        print(prefix + ("└── " if is_left else "┌── ") + f"{node.char}:{node.freq}")
+        print_tree_structure(node.left, prefix + ("    " if is_left else "│   "), True)
+        print_tree_structure(
+            node.right, prefix + ("    " if is_left else "│   "), False
         )
+
+
+def test_huffman_tree_structure_complex():
+    data = "abcdefghabcdefgh"
+    root = huffman_encoding(data)
+
+    print("Actual tree structure:")
+    print_tree_structure(root)
+
+    expected_tree = {
+        'freq': 16, 'char': None,
+        'left': {
+            'freq': 8, 'char': None,
+            'left': {
+                'freq': 4, 'char': None,
+                'left': {'freq': 2, 'char': 'a'},
+                'right': {'freq': 2, 'char': 'b'}
+            },
+            'right': {
+                'freq': 4, 'char': None,
+                'left': {'freq': 2, 'char': 'c'},
+                'right': {'freq': 2, 'char': 'd'}
+            }
+        },
+        'right': {
+            'freq': 8, 'char': None,
+            'left': {
+                'freq': 4, 'char': None,
+                'left': {'freq': 2, 'char': 'e'},
+                'right': {'freq': 2, 'char': 'f'}
+            },
+            'right': {
+                'freq': 4, 'char': None,
+                'left': {'freq': 2, 'char': 'g'},
+                'right': {'freq': 2, 'char': 'h'}
+            }
+        }
+    }
+
+    verify_tree_structure(root, expected_tree)

@@ -1,27 +1,47 @@
-import sys
 import heapq
 from collections import Counter
 
 
 class Node:
-    def __init__(self, char, freq):
+    _node_count = 0
+
+    def __init__(self, freq, char=None):
         self.char = char
         self.freq = freq
         self.left = None
         self.right = None
+        # We need a tie braker for nodes with same frequencies, use class var
+        self.creation_order = Node._node_count
+        Node._node_count += 1
 
     def __lt__(self, other):
-        return self.freq < other.freq
+        if self.freq != other.freq:
+            return self.freq < other.freq
+        if self.char is not None and other.char is not None:
+            return self.char < other.char
+        if self.char is None and other.char is None:
+            return self.creation_order < other.creation_order
+        return self.char is not None  # Leaf nodes come before internal nodes
 
 
 def huffman_encoding(data):
     if not data:
-        return ""  # this only works if data is alwas str type
+        return None
 
+    Node._node_count = 0  # Reset node count for each encoding
     frequency = Counter(data)
-    # iterate the dict object to create nodes
-    heap = [Node(char, freq) for char, freq in frequency.items()]
-    return heap
+    heap = [Node(freq, char) for char, freq in frequency.items()]
+    heapq.heapify(heap)
+
+    while len(heap) > 1:
+        left = heapq.heappop(heap)
+        right = heapq.heappop(heap)
+        merged = Node(left.freq + right.freq)
+        merged.left = left
+        merged.right = right
+        heapq.heappush(heap, merged)
+
+    return heap[0] if heap else None
 
 
 def huffman_decoding(data, tree):
