@@ -8,6 +8,9 @@ class Node:
         self.left = None
         self.right = None
 
+    def __lt__(self, other):
+        return self.freq < other.freq
+
 
 def huffman_encoding(data):
     pass
