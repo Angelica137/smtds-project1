@@ -157,3 +157,10 @@ def test_generate_codes():
     assert codes == expected_codes, f"Expected {expected_codes}, but got {codes}"
 
     print("generate_codes test passed successfully!")
+
+
+def test_huffman_decoding():
+    test = "The bird is the word"
+    encoded_data, tree = huffman_encoding(test)
+    result = huffman_decoding(encoded_data, tree)
+    assert result == "The bird is the word"

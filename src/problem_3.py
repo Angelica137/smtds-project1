@@ -1,3 +1,4 @@
+import sys
 import heapq
 from collections import Counter
 
@@ -69,13 +70,29 @@ def generate_codes(root):
 
 
 def huffman_decoding(data, tree):
-    pass
+    decoded_data = []
+    current_node = tree
+
+    for bit in data:
+        if bit == "0":
+            current_node = current_node.left
+        else:  # bit == '1'
+            current_node = current_node.right
+
+        if current_node.char is not None:
+            decoded_data.append(current_node.char)
+            current_node = tree  # Reset to the root for the next character
+
+    return "".join(decoded_data)
 
 
 if __name__ == "__main__":
     codes = {}
 
     a_great_sentence = "The bird is the word"
+    print("TEST")
+    print(huffman_encoding(a_great_sentence))
+    print("END TEST")
 
     print("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
     print("The content of the data is: {}\n".format(a_great_sentence))
@@ -94,6 +111,10 @@ if __name__ == "__main__":
     print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
     print("The content of the encoded data is: {}\n".format(decoded_data))
 
+
+"""
+Test cases are in test file
+"""
 ## Add your own test cases: include at least three test cases
 ## and two of them must include edge cases, such as null, empty or very large values
 
