@@ -1,5 +1,12 @@
 import sys
 
+
+class Node:
+    def __init__(self, char, freq):
+        self.char = char
+        self.freq = freq
+
+
 def huffman_encoding(data):
     pass
 
