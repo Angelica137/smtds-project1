@@ -13,7 +13,8 @@ class Node:
 
 
 def huffman_encoding(data):
-    pass
+    if not data:
+        return ''  # this only works if data is alwas str type
 
 def huffman_decoding(data,tree):
     pass

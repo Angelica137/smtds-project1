@@ -21,3 +21,8 @@ def test_node_compares_itself():
     assert node_2 < node_1
     assert not (node_1 < node_2)
     assert not (node_1 < node_3)
+
+
+def test_huffman_encoding_no_data():
+    data = ''
+    assert huffman_encoding(data) == ''
