@@ -1,4 +1,5 @@
 import sys
+import heapq
 from collections import Counter
 
 
@@ -15,31 +16,39 @@ class Node:
 
 def huffman_encoding(data):
     if not data:
-        return ''  # this only works if data is alwas str type
+        return ""  # this only works if data is alwas str type
 
     frequency = Counter(data)
-    return frequency
+    # iterate the dict object to create nodes
+    heap = [Node(char, freq) for char, freq in frequency.items()]
+    return heap
 
-def huffman_decoding(data,tree):
+
+def huffman_decoding(data, tree):
     pass
+
 
 if __name__ == "__main__":
     codes = {}
 
     a_great_sentence = "The bird is the word"
 
-    print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
-    print ("The content of the data is: {}\n".format(a_great_sentence))
+    print("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+    print("The content of the data is: {}\n".format(a_great_sentence))
 
     encoded_data, tree = huffman_encoding(a_great_sentence)
 
-    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
-    print ("The content of the encoded data is: {}\n".format(encoded_data))
+    print(
+        "The size of the encoded data is: {}\n".format(
+            sys.getsizeof(int(encoded_data, base=2))
+        )
+    )
+    print("The content of the encoded data is: {}\n".format(encoded_data))
 
     decoded_data = huffman_decoding(encoded_data, tree)
 
-    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
-    print ("The content of the encoded data is: {}\n".format(decoded_data))
+    print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    print("The content of the encoded data is: {}\n".format(decoded_data))
 
 ## Add your own test cases: include at least three test cases
 ## and two of them must include edge cases, such as null, empty or very large values

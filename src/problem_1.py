@@ -2,7 +2,6 @@ from collections import OrderedDict
 
 
 class LRU_Cache(object):
-
     def __init__(self, capacity):
         self.capacity = capacity
         self.cache = OrderedDict()

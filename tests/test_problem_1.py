@@ -99,7 +99,7 @@ def test_null_cache():
 def test_large_cache():
     large_cache = LRU_Cache(1000)
     for i in range(1000):
-        large_cache.set(i, i*10)
+        large_cache.set(i, i * 10)
     assert large_cache.get(500) == 5000
 
     large_cache.set(1001, 10010)

@@ -30,6 +30,7 @@ def find_files(suffix, path):
         print(f"Permission denied: {path}")
     return result
 
+
 # Add your own test cases: include at least three test cases
 # and two of them must include edge cases, such as null, empty or very large values
 
