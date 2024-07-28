@@ -7,3 +7,17 @@ def test_new_node():
     assert new_node.freq == 6
     assert new_node.left is None
     assert new_node.right is None
+
+
+def test_node_compares_itself():
+    """
+    GIVEN another node
+    WHEN there is another node
+    THEN check current node is less thatn other node
+    """
+    node_1 = Node('a', 5)
+    node_2 = Node('c', 3)
+    node_3 = Node('d', 5)
+    assert node_2 < node_1
+    assert not (node_1 < node_2)
+    assert not (node_1 < node_3)
