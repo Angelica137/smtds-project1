@@ -1,4 +1,5 @@
 import sys
+from collections import Counter
 
 
 class Node:
@@ -15,6 +16,9 @@ class Node:
 def huffman_encoding(data):
     if not data:
         return ''  # this only works if data is alwas str type
+
+    frequency = Counter(data)
+    return frequency
 
 def huffman_decoding(data,tree):
     pass

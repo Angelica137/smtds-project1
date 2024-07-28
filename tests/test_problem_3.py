@@ -30,4 +30,4 @@ def test_huffman_encoding_no_data():
 
 def test_frequency_chars():
     data = 'aaabbbddd'
-    assert huffman_encoding(data) == {'a': 3, 'b': 3, 'c': 3}
+    assert huffman_encoding(data) == {'a': 3, 'b': 3, 'd': 3}
