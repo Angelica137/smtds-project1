@@ -11,13 +11,13 @@ def test_new_node():
 
 def test_node_comparison():
     # Test case 1: Different frequencies
-    node1 = Node(5, 'a')
-    node2 = Node(10, 'b')
+    node1 = Node(5, "a")
+    node2 = Node(10, "b")
     assert node1 < node2
     assert not node2 < node1
 
     # Test case 2: Same frequency, different characters
-    node3 = Node(5, 'b')
+    node3 = Node(5, "b")
     assert node1 < node3
     assert not node3 < node1
 
@@ -34,7 +34,7 @@ def test_node_comparison():
     assert not node4 < node1
 
     # Test case 5: Equal nodes
-    node6 = Node(5, 'a')
+    node6 = Node(5, "a")
     assert not node1 < node6
     assert not node6 < node1
 
@@ -77,49 +77,69 @@ def print_tree_structure(node, prefix="", is_left=True):
 
 def test_huffman_tree_structure_complex():
     data = "abcdefghabcdefgh"
-    root = huffman_encoding(data)
+    encoded_data, root = huffman_encoding(data)  # Unpack the tuple
 
     print("Actual tree structure:")
-    print_tree_structure(root)
+    print_tree_structure(root)  # Pass only the root to print_tree_structure
 
     expected_tree = {
-        'freq': 16, 'char': None,
-        'left': {
-            'freq': 8, 'char': None,
-            'left': {
-                'freq': 4, 'char': None,
-                'left': {'freq': 2, 'char': 'a'},
-                'right': {'freq': 2, 'char': 'b'}
+        "freq": 16,
+        "char": None,
+        "left": {
+            "freq": 8,
+            "char": None,
+            "left": {
+                "freq": 4,
+                "char": None,
+                "left": {"freq": 2, "char": "a"},
+                "right": {"freq": 2, "char": "b"},
             },
-            'right': {
-                'freq': 4, 'char': None,
-                'left': {'freq': 2, 'char': 'c'},
-                'right': {'freq': 2, 'char': 'd'}
-            }
+            "right": {
+                "freq": 4,
+                "char": None,
+                "left": {"freq": 2, "char": "c"},
+                "right": {"freq": 2, "char": "d"},
+            },
         },
-        'right': {
-            'freq': 8, 'char': None,
-            'left': {
-                'freq': 4, 'char': None,
-                'left': {'freq': 2, 'char': 'e'},
-                'right': {'freq': 2, 'char': 'f'}
+        "right": {
+            "freq": 8,
+            "char": None,
+            "left": {
+                "freq": 4,
+                "char": None,
+                "left": {"freq": 2, "char": "e"},
+                "right": {"freq": 2, "char": "f"},
             },
-            'right': {
-                'freq': 4, 'char': None,
-                'left': {'freq': 2, 'char': 'g'},
-                'right': {'freq': 2, 'char': 'h'}
-            }
-        }
+            "right": {
+                "freq": 4,
+                "char": None,
+                "left": {"freq": 2, "char": "g"},
+                "right": {"freq": 2, "char": "h"},
+            },
+        },
     }
 
     verify_tree_structure(root, expected_tree)
 
+    # Test the encoded data
+    print(f"Encoded data: {encoded_data}")
+    assert (
+        len(encoded_data) == 48
+    ), f"Expected encoded data length of 48, got {len(encoded_data)}"
+
+    # Optionally, you can add more specific tests for the encoded data
+    # For example, check if each character is encoded with 3 bits
+    unique_codes = set(encoded_data[i : i + 3] for i in range(0, len(encoded_data), 3))
+    assert (
+        len(unique_codes) == 8
+    ), f"Expected 8 unique 3-bit codes, got {len(unique_codes)}"
+
 
 def test_generate_codes():
     # Create a simple Huffman tree
-    leaf_a = Node(3, 'a')
-    leaf_b = Node(2, 'b')
-    leaf_c = Node(1, 'c')
+    leaf_a = Node(3, "a")
+    leaf_b = Node(2, "b")
+    leaf_c = Node(1, "c")
     internal_node = Node(3, None)
     internal_node.left = leaf_b
     internal_node.right = leaf_c
@@ -131,11 +151,7 @@ def test_generate_codes():
     codes = generate_codes(root)
 
     # Expected Huffman codes
-    expected_codes = {
-        'a': '0',
-        'b': '10',
-        'c': '11'
-    }
+    expected_codes = {"a": "0", "b": "10", "c": "11"}
 
     # Test if generated codes match expected codes
     assert codes == expected_codes, f"Expected {expected_codes}, but got {codes}"

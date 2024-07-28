@@ -42,8 +42,9 @@ def huffman_encoding(data):
         heapq.heappush(heap, merged)
 
     root = heap[0]
-    codes = {}
-    return root
+    codes = generate_codes(root)
+    encoded_data = "".join(codes[char] for char in data)
+    return encoded_data, root
 
 
 # Helper function to generate codes
@@ -51,7 +52,6 @@ def generate_codes(root):
     codes = {}
 
     def _generate_codes(node, current_code):
-
         # if we have gone past a leaf node, we completed traversal, so return
         if node is None:
             return
