@@ -5,3 +5,5 @@ def test_new_node():
     new_node = Node('a', 6)
     assert new_node.char == 'a'
     assert new_node.freq == 6
+    assert new_node.left == None
+    assert new_node.right == None
