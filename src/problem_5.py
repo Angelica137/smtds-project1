@@ -9,6 +9,7 @@ class Block:
         self.previous_hash = previous_hash
         self.hash = self.calc_hash()
 
+    # I had to move it in, I did not know how to pass the test otherwise
     def calc_hash(self):
         sha = hashlib.sha256()
         hash_str = "We are going to encode this string of data!".encode("utf-8")
