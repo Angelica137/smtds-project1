@@ -54,8 +54,23 @@ def union(llist_1, llist_2):
 
 
 def intersection(llist_1, llist_2):
-    # Your Solution Here
-    pass
+    result = set()
+    set_2 = set()
+
+    # add all values from llist_2 to a set
+    current_2 = llist_2.head
+    while current_2:
+        set_2.add(current_2.value)
+        current_2 = current_2.next
+
+    # check each value in llist_1 against set_2
+    current_1 = llist_1.head
+    while current_1:
+        if current_1.value in set_2:
+            result.add(current_1.value)
+        current_1 = current_1.next
+
+    return result
 
 
 ## Test case 1

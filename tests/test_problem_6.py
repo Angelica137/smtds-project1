@@ -23,3 +23,9 @@ def test_union_returns_set():
     new_union = union(linked_list_1, linked_list_2)
     sorted_union = sorted(list(new_union))
     assert sorted_union == [1, 2, 3, 4, 6, 9, 11, 21, 32, 35, 65]
+
+
+def test_intersection_returns():
+    new_intersection = intersection(linked_list_1, linked_list_2)
+    sorted_intersection = sorted(list(new_intersection))
+    assert sorted_intersection == [4, 6, 21]
