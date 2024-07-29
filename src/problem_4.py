@@ -39,12 +39,12 @@ def is_user_in_group(user, group):
       user(str): user name/id
       group(class:Group): group to check user membership against
     """
-    return user in group.users
-    """
+    if user in group.users:
+        return True
     for sub_group in group.groups:
-        return user in sub_group.user
+        return user in sub_group.users
     return False
-    """
+
 
 ## Add your own test cases: include at least three test cases
 ## and two of them must include edge cases, such as null, empty or very large values
