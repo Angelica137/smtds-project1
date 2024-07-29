@@ -76,12 +76,12 @@ def huffman_decoding(data, tree):
     for bit in data:
         if bit == "0":
             current_node = current_node.left
-        else:  # bit == '1'
+        else:
             current_node = current_node.right
 
         if current_node.char is not None:
             decoded_data.append(current_node.char)
-            current_node = tree  # Reset to the root for the next character
+            current_node = tree  # Go back to the root for the next character
 
     return "".join(decoded_data)
 
