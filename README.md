@@ -21,3 +21,7 @@ Write code for finding all files under a directory (and all directories beneath 
 Implement the Huffman coding algorithm.
 
 ## Problem 4:  Active Directory
+Find if a user is in a group by searching the tree
+
+## Problem 5: Blockchain
+A simple implementation of a blockchain
