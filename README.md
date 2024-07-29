@@ -25,3 +25,7 @@ Find if a user is in a group by searching the tree
 
 ## Problem 5: Blockchain
 A simple implementation of a blockchain
+
+
+## Problem 5: Union and Intersection
+Given 2 linked lists, write two function that return a new linked list that made up their union and intersection nodes respectively.
