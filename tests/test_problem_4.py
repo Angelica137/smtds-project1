@@ -36,3 +36,18 @@ def test_is_user_in_null_group():
     # null group is = None
     with pytest.raises(AttributeError):
         is_user_in_group("user123", None)
+
+
+def test_empty_user_id():
+    group = Group("group")
+    group.add_user("")
+    assert is_user_in_group("", group) is True
+    assert is_user_in_group("", Group("empty")) is False
+
+
+def test_is_user_in_very_large_group():
+    large_group = Group("large")
+    for i in range(1000000):  # Add a million users
+        large_group.add_user(f"user{i}")
+    assert is_user_in_group("user999999", large_group) is True
+    assert is_user_in_group("nonexistent", large_group) is False
