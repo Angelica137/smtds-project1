@@ -31,13 +31,20 @@ child.add_group(sub_child)
 parent.add_group(child)
 
 
-def is_user_in_group(user, group):
+def is_user_in_group(user: str, group: Group) -> bool:
     """
     Return True if user is in the group, False otherwise.
 
     Args:
       user(str): user name/id
       group(class:Group): group to check user membership against
+
+    Returns:
+        bool: True if the user is in the group or any of its subgroups, False otherwise.
+
+    Time Complexity:
+        O(n * m), where n is the total number of groups and subgroups in the hierarchy,
+        and m is the average number of users per group.
     """
     if user in group.users:
         return True
