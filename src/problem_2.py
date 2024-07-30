@@ -18,7 +18,8 @@ def find_files(suffix: str, path: str) -> list:
         a list of paths
 
     Time complexity:
-        O(n)
+    O(n), where n is the total number of files and directories in the directory tree.
+    Each file and directory is processed once with constant-time operations.
     """
     result = []
 
