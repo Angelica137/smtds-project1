@@ -1,7 +1,7 @@
 import os
 
 
-def find_files(suffix, path):
+def find_files(suffix: str, path: str) -> list:
     """
     Find all files beneath path with file name suffix.
 
@@ -15,7 +15,10 @@ def find_files(suffix, path):
       path(str): path of the file system
 
     Returns:
-       a list of paths
+        a list of paths
+
+    Time complexity:
+        O(n)
     """
     result = []
 
