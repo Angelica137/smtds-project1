@@ -6,6 +6,7 @@ class Node:
         value (int): The value stored in the node.
         next (optional[Node]): reference to the enxt node
     """
+
     def __init__(self, value):
         """
         Initialises a new Node object.
@@ -37,6 +38,7 @@ class LinkedList:
     Attributes:
         head (Optional[Node]): The first node in the list, or None if the list is empty.
     """
+
     def __init__(self):
         """
         Initialise a new empty list

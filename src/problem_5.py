@@ -15,6 +15,7 @@ class Block:
 
     Time complexity: O(1) for initialisation.
     """
+
     def __init__(self, timestamp: float, data: str, previous_hash: str):
         """
         Initialises a new Block instance.
@@ -44,7 +45,9 @@ class Block:
         """
         sha = hashlib.sha256()
         hash_str = str(self.timestamp) + str(self.data) + str(self.previous_hash)
-        encoded_hash_str = hash_str.encode('utf-8')  # unicode obj must be encoded before hashing
+        encoded_hash_str = hash_str.encode(
+            "utf-8"
+        )  # unicode obj must be encoded before hashing
         sha.update(encoded_hash_str)
         return sha.hexdigest()
 
@@ -61,6 +64,7 @@ class Blockchain:
 
     Time complexity: O(1) for initialization.
     """
+
     def __init__(self):
         """
         Creates an intance of a block to add as first block.
