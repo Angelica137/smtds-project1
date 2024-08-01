@@ -3,17 +3,49 @@ import time
 
 
 class Block:
+    """
+    This class provides a blueprint for creating and managing blocks
+    in a blockchain system.
+
+    Attributes:
+        timestamp (float): The time when the block was created.
+        data (str): The data stored in the block.
+        previous_hash (str): The hash of the previous block in the chain.
+        hash (str): The hash of the current block.
+
+    Time complexity: O(1) for initialisation.
+    """
     def __init__(self, timestamp, data, previous_hash):
+        """
+        Initialises a new Block instance.
+
+        Args:
+            timestamp (float): The time when the block was created.
+            data (str): The data to be stored in the block.
+            previous_hash (str): The hash of the previous block in the chain.
+
+        Time complexity: O(1) for attribute assignment, O(n) for hash calculation
+        where n is the length of the input string.
+        """
         self.timestamp = timestamp
         self.data = data
         self.previous_hash = previous_hash
         self.hash = self.calc_hash()
 
-    # I had to move it in, I did not know how to pass the test otherwise
     def calc_hash(self):
+        """
+        Calculates the hash of the block.
+        Provides the hashing algorithm using SHA-256 from hashlib.
+
+        Returns:
+            str: The hexadecimal digest of the hash.
+
+        Time complexity: O(n) where n is the length of the input string.
+        """
         sha = hashlib.sha256()
-        hash_str = "We are going to encode this string of data!".encode("utf-8")
-        sha.update(hash_str)
+        hash_str = str(self.timestamp) + str(self.data) + str(self.previous_hash)
+        encoded_hash_str = hash_str.encode('utf-8')  # unicode obj must be encoded before hashing
+        sha.update(encoded_hash_str)
         return sha.hexdigest()
 
 
@@ -38,6 +70,10 @@ class Blockchain:
             print(f"  Hash: {block.hash}")
             print()
 
+
+"""
+Test casesin test file
+"""
 
 ## Add your own test cases: include at least three test cases
 ## and two of them must include edge cases, such as null, empty or very large values
