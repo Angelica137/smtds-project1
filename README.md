@@ -2,6 +2,52 @@
 
 This project is my submission for the data structures module in the Data Structures and Algorithms Udacity Nanodegree
 
+
+## Setup and Installation
+Follow these steps to set up the project and run the tests:
+
+### Prerequisites
+
+Python 3.7 or higher
+pip (Python package installer)
+
+### Setup Instructions
+
+1. Clone the repository:
+
+```
+git clone https://github.com/yourusername/your-repo-name.git
+cd your-repo-name
+```
+
+2. Create a virtual environment:
+```
+python -m venv venv
+```
+
+3. Activate the virtual environment:
+
+On Windows:
+```
+venv\Scripts\activate
+```
+
+On macOS and Linux:
+```
+source venv/bin/activate
+```
+
+4. Install the required packages:
+Copypip install -r requirements.txt
+
+
+## Running Tests
+After setting up the virtual environment and installing the requirements, you can run the tests using:
+```
+pytest
+```
+
+
 ## Problem 1: LRU Cache
 Design a data structure known as a Least Recently Used (LRU) cache. An LRU cache is a type of cache in which we remove the least recently used entry when the cache memory reaches its limit. For the current problem, consider both get and set operations as an use operation.
 
