@@ -4,7 +4,7 @@ import time
 
 class Block:
     """
-    This class provides a blueprint for creating and managing blocks
+    Provides a blueprint for creating and managing blocks
     in a blockchain system.
 
     Attributes:

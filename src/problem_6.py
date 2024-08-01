@@ -1,18 +1,57 @@
 class Node:
+    """
+    Represents a node in a linked lists.
+
+    Attributes:
+        value (int): The value stored in the node.
+        next (optional[Node]): reference to the enxt node
+    """
     def __init__(self, value):
+        """
+        Initialises a new Node object.
+
+        Args:
+            value (int): The value to be stored in the Node
+
+        Time complexity O(1)
+        """
         self.value = value
         self.next = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """
+        Returns a string representation of the node.
+
+        Time complexity O(1)
+        """
         return str(self.value)
 
 
 class LinkedList:
+    """
+    Represents a singly linked list.
+
+    Provides methods to create and manage a linked list,
+    including adding new nodes and calculating the size of the list.
+
+    Attributes:
+        head (Optional[Node]): The first node in the list, or None if the list is empty.
+    """
     def __init__(self):
+        """
+        Initialise a new empty list
+        """
         self.head = None
 
     # string representation of an object
     def __str__(self):
+        """
+        String representation of the linked list object.
+
+        Returns the complete list as a string.
+
+        Time complexity: O(n) where n is the number of nodes.
+        """
         cur_head = self.head
         out_string = ""
         while cur_head:
@@ -21,6 +60,17 @@ class LinkedList:
         return out_string
 
     def append(self, value):
+        """
+        Appends a new node with the given value to the end of the list.
+
+        If the list is empty, the new node becomes the head of the list.
+        Otherwise, it iterates to the end of the list and adds the new node there.
+
+        Args:
+            value (int): The value to be stored in the new node.
+
+        Time complexity: O(n), where n is the number of nodes in the list.
+        """
         if self.head is None:
             self.head = Node(value)
             return
@@ -32,6 +82,11 @@ class LinkedList:
         node.next = Node(value)
 
     def size(self):
+        """
+        Retutrns the size of the list
+
+        Time compelxity: O(n) where n is the number of nodes.
+        """
         size = 0
         node = self.head
         while node:
@@ -41,7 +96,19 @@ class LinkedList:
         return size
 
 
-def union(llist_1, llist_2):
+def union(llist_1: list, llist_2: list) -> set:
+    """
+    Finds and return the union set of two linked lists.
+
+    Args:
+        llist_1 (LinkedList): The first linked list.
+        llist_2 (LinkedList): The second linked list.
+
+    Returns:
+        Set[int]: A set containing all unique values from both linked lists.
+
+    Time complexity: O(n + m), where n and m are the lengths of llist_1 and llist_2 respectively.
+    """
     result = set()
 
     # tuple packing
@@ -54,6 +121,18 @@ def union(llist_1, llist_2):
 
 
 def intersection(llist_1, llist_2):
+    """
+    Find and return the intersection set of two linked lists.
+
+    Args:
+        llist_1 (LinkedList): The first linked list.
+        llist_2 (LinkedList): The second linked list.
+
+    Returns:
+        Set[int]: A set containing values that exist in both linked lists.
+
+    Time complexity: O(n + m), where n and m are the lengths of llist_1 and llist_2 respectively.
+    """
     result = set()
     set_2 = set()
 
@@ -106,6 +185,11 @@ for i in element_2:
 
 print(union(linked_list_3, linked_list_4))
 print(intersection(linked_list_3, linked_list_4))
+
+
+"""
+Tests are in test file
+"""
 
 ## Add your own test cases: include at least three test cases
 ## and two of them must include edge cases, such as null, empty or very large values
